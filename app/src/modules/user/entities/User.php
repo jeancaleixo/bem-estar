@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace App\Modules\User\Entities;
 
-use App\Interfaces\userInteface;
+use App\Src\Interfaces\userInteface;
 
 class User implements userInteface
 {
