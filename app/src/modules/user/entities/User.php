@@ -11,12 +11,12 @@ class User implements UserInteface
     private string $email;
     private string $password;
 
-    public function __construct(int $id, string $name, string $email, string $password)
+    public function __construct(array $data)
     {
-        $this->id = $id;
-        $this->name = $name;
-        $this->email = $email;
-        $this->password = $password;
+        $this->id = $data['id'] ?? null;
+        $this->name = $data['name'] ?? null;
+        $this->email = $data['email'] ?? null;
+        $this->password = $data['password'] ?? null;
     }
 
     public function getId(): int
