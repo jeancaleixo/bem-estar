@@ -10,9 +10,9 @@ class Database
     function Connection()
     {
         $host = 'localhost';
-        $dbname = 'seu_banco';
-        $user = 'usuario';
-        $password = 'senha';
+        $dbname = 'estar';
+        $user = 'root';
+        $password = 'root';
 
         try {
             $connection = new PDO(
