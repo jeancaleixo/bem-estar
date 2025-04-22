@@ -2,7 +2,7 @@
 
 namespace App\Src\Interfaces;
 
-interface userInteface
+interface UserInteface
 {
     public function getId(): int;
     public function getName(): string;

@@ -2,9 +2,9 @@
 
 namespace App\Modules\User\Entities;
 
-use App\Src\Interfaces\userInteface;
+use App\Src\Interfaces\UserInteface;
 
-class User implements userInteface
+class User implements UserInteface
 {
     private int $id;
     private string $name;
