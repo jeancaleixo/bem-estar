@@ -14,13 +14,6 @@ class UserRepositoryDatabase
         $this->connection = $connection;
     }
 
-    private function getNextId()
-    {
-        $stmt = $this->connection->query('SELECT MAX(id) as max_id FROM users');
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        return ($result && $result['max_id']) ? $result['max_id'] + 1 : 1;
-    }
-
     public function findById(int $id): ?UserInteface
     {
         $stmt = $this->connection->prepare("SELECT * FROM users WHERE id = :id");
@@ -39,6 +32,20 @@ class UserRepositoryDatabase
             $data['password']
         );
     }
+
+    public function findByEmail(string $email): ?UserInteface
+    {
+        $stmt = $this->connection->prepare("SELECT * FROM users WHERE email = :email");
+        $stmt->execute(['email' => $email]);
+        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$data)
+        {
+            return null;
+        }
+
+        return new User($data);
+    }   
 
     public function save(UserInteface $user):void
     {
