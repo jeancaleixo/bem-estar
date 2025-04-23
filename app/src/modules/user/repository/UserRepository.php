@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Src\Modules\User\Repository;
 
 use App\Modules\User\Entities\User;
@@ -20,8 +21,7 @@ class UserRepositoryDatabase
         $stmt->execute(['id' => $id]);
         $data = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if (!$data)
-        {
+        if (!$data) {
             return null;
         }
 
@@ -39,34 +39,30 @@ class UserRepositoryDatabase
         $stmt->execute(['email' => $email]);
         $data = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if (!$data)
-        {
+        if (!$data) {
             return null;
         }
 
         return new User($data);
-    }   
+    }
 
-    public function save(UserInteface $user):void
+    public function save(UserInteface $user): void
     {
         if ($user->getId()) {
             $stmt = $this->connection->prepare(
                 "UPDATE users SET name = :name, email = :email, password = :password WHERE id = :id"
             );
-            $stmt->execute
-            ([
+            $stmt->execute([
                 'id' => $user->getId(),
                 'name' => $user->getName(),
                 'email' => $user->getEmail(),
                 'password' => $user->getPassword(),
             ]);
         } else {
-            $stmt = $this->connection->prepare
-            (
+            $stmt = $this->connection->prepare(
                 "INSERT INTO users (name, email, password) VALUES (:name, :email, :password)"
             );
-            $stmt->execute
-            ([
+            $stmt->execute([
                 'name' => $user->getName(),
                 'email' => $user->getEmail(),
                 'password' => $user->getPassword()

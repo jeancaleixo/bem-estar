@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Src\Infra\Http\User;
+namespace App\Src\Infra\Http\User; // ✅ Correto!
 
-require_once __DIR__ . '/../../../../vendor/autoload.php';
-
-use App\Modules\User\Services\CreateUserService;
-use App\Src\Modules\User\Repository\UserRepositoryDatabase;
+use App\Modules\User\Services\CreateUserService as ServicesCreateUserService;
+use App\Src\Modules\User\Services\CreateUserService;
 use App\Src\Config\Database;
+use App\Src\Modules\User\Repository\UserRepositoryDatabase;
 use Exception;
 
 class UserController
@@ -30,8 +29,8 @@ class UserController
             $database = new Database();
             $pdo = $database->Connection();
 
-            $userRepositoryDatabase = new UserRepositoryDatabase($pdo);
-            $createUserService = new CreateUserService($userRepositoryDatabase);
+            $repositoryDatabase = new UserRepositoryDatabase($pdo);
+            $createUserService = new ServicesCreateUserService($repositoryDatabase);
 
             $user = $createUserService->execute($data);
 

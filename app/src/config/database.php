@@ -12,7 +12,7 @@ class Database
         $host = 'localhost';
         $dbname = 'estar';
         $user = 'root';
-        $password = 'root';
+        $password = 'detonado222';
 
         try {
             $connection = new PDO(

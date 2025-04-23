@@ -5,7 +5,7 @@ namespace App\Modules\User\Services;
 use App\Modules\User\Entities\User;
 use App\Src\Modules\User\Repository\UserRepositoryDatabase;
 
-class CreateUserService 
+class CreateUserService
 {
     private UserRepositoryDatabase $userRepositoryDatabase;
 
@@ -18,7 +18,7 @@ class CreateUserService
     {
 
         $existingUser = $this->userRepositoryDatabase->findByEmail($data['email']);
-        if($existingUser){
+        if ($existingUser) {
             throw new \Exception("Usuário com este email já existe");
         }
 
